@@ -1,14 +1,19 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
+import Dictionary from "./Dictionary";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">My Dictionary App</header>
+      <div className="container">
+        <header className="App-header">My Dictionary App</header>
+        <main>
+          <Dictionary />
+        </main>
+        <footer className="text-center">
+          <small>Coded by Julie May</small>
+        </footer>
+      </div>
     </div>
   );
 }
-
-export default App;
