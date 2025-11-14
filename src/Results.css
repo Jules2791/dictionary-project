@@ -4,4 +4,15 @@
   font-size: 36px;
   line-height: 43px;
   color: #000000;
+  margin-bottom: 10px;
+}
+
+.Results section {
+  background: red;
+}
+
+.Phonetic {
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #666;
 }

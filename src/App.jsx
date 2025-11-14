@@ -6,12 +6,14 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <header className="App-header">My Dictionary App</header>
+        <header className="App-header">🔍 Dictionary App</header>
         <main>
           <Dictionary />
         </main>
         <footer className="text-center">
-          <small>Coded by Julie May</small>
+          <small>
+            Built by Julie May, open-sourced on GitHub and hosted on Netlify.
+          </small>
         </footer>
       </div>
     </div>

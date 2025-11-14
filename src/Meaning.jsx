@@ -5,11 +5,8 @@ import "./Meaning.css";
 export default function Meaning(props) {
   return (
     <div className="Meaning">
-      <h3>{props.meaning.partOfSpeech}</h3>
-      <p>
-        <strong>Definition:</strong> {""}
-        {props.meaning.definition}
-      </p>
+      <h5>{props.meaning.partOfSpeech}</h5>
+      <p>{props.meaning.definition}</p>
       <em>{props.meaning.example}</em>
       <br />
       <Synonyms synonyms={props.meaning.synonyms} />

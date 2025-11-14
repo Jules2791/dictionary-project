@@ -1,4 +1,5 @@
 import React from "react";
+import "./Synonyms";
 
 export default function Synonyms({ synonyms }) {
   if (!synonyms || synonyms.length === 0) return null;

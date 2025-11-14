@@ -6,18 +6,26 @@ import "./Dictionary.css";
 export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
   let [result, setResults] = useState(null);
+  let [loading, setLoading] = useState(false);
 
   function handleResponse(response) {
     setResults(response.data);
+    setLoading(false);
   }
 
-  function search(event) {
-    event.preventDefault();
+  function search() {
+    if (!keyword) return;
+    setLoading(true);
 
     //Api Documentation https://www.shecodes.io/learn/apis/dictionary
     let apiKey = "ba5f0o41c7ff3cc032eee04b3d66at0a";
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
   }
 
   function handleKeywordChange(event) {
@@ -27,17 +35,17 @@ export default function Dictionary() {
   return (
     <div className="Dictionary">
       <section>
-        <form onSubmit={search}>
-          <label htmlFor="word">What word do you want to look up?</label>
+        <form onSubmit={handleSubmit}>
           <input
             id="word"
             type="search"
             className="search-input"
-            placeholder="Type a word..."
+            placeholder="Search for a word"
             onChange={handleKeywordChange}
           />
         </form>
-        <small className="hint">e.g. sunset, ocean, happy…</small>
+
+        {loading && <p className="loading">Searching…</p>}
       </section>
       <Results results={result} />
     </div>
