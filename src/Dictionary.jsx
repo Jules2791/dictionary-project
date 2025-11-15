@@ -1,16 +1,22 @@
 import { useState } from "react";
 import axios from "axios";
 import Results from "./Results";
+import Photos from "./Photos";
 import "./Dictionary.css";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
   let [result, setResults] = useState(null);
   let [loading, setLoading] = useState(false);
+  let [photos, setPhotos] = useState(null);
 
   function handleResponse(response) {
     setResults(response.data);
     setLoading(false);
+  }
+
+  function handleImageResponse(response) {
+    setPhotos(response.data.photos);
   }
 
   function search() {
@@ -21,6 +27,11 @@ export default function Dictionary() {
     let apiKey = "ba5f0o41c7ff3cc032eee04b3d66at0a";
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
+
+    //Api Image Documentation https://www.shecodes.io/learn/apis/images
+    let shecodesApiKey = "ba5f0o41c7ff3cc032eee04b3d66at0a";
+    let shecodesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${shecodesApiKey}`;
+    axios.get(shecodesApiUrl).then(handleImageResponse);
   }
 
   function handleSubmit(event) {
@@ -48,6 +59,7 @@ export default function Dictionary() {
         {loading && <p className="loading">Searching…</p>}
       </section>
       <Results results={result} />
+      <Photos photos={photos} />
     </div>
   );
 }
